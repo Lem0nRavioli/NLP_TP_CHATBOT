@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+joblib
+scikit-learn
+pandas
+kagglehub
+spacy
+joblib
+sqlalchemy
+aiosqlite
