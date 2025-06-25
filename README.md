@@ -1,7 +1,15 @@
 "# NLP_TP_CHATBOT" 
 
-in progress
+cd ticket_classifier_api
 
-run the fast api:
+In 2 different terminal =>
 
-    uvicorn main:app --reload
+    run the fast api:
+
+        uvicorn main:app --reload
+
+    run the chatbot:
+        
+        python chat.py
+
+
