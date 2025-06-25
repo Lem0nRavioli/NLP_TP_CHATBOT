@@ -1,0 +1,58 @@
+{
+  "intents": [
+    {
+      "tag": "create_ticket",
+      "patterns": [
+        "create a ticket",
+        "open a new ticket",
+        "new issue",
+        "report a problem",
+        "I have an issue",
+        "something's not working",
+        "I need help",
+        "file a complaint",
+        "submit a support request",
+        "raise a ticket"
+      ],
+      "response": "Sure! Please describe your issue."
+    },
+    {
+      "tag": "delete_ticket",
+      "patterns": [
+        "delete ticket",
+        "remove ticket",
+        "cancel my ticket",
+        "get rid of a ticket",
+        "close ticket",
+        "I want to cancel my request",
+        "discard the ticket",
+        "abort my ticket",
+        "can you delete ticket 23",
+        "delete the request I made"
+      ],
+      "response": "Please provide the ticket ID you'd like to delete."
+    },
+    {
+      "tag": "get_status",
+      "patterns": [
+        "what's the status",
+        "ticket status",
+        "check my ticket",
+        "what's going on with ticket 12",
+        "can you update me on ticket 7",
+        "follow up on ticket",
+        "any news on my issue",
+        "what happened with my request",
+        "is ticket 45 resolved",
+        "status of my report"
+      ],
+      "response": "Please provide the ticket ID you want to check."
+    },
+    {
+      "tag": "fallback",
+        "patterns": [
+        ],
+      "response": "Sorry, I didn't understand that. Can you rephrase?"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import joblib
 import os
 
-# Load model and vectorizer
+# load model and vectorizer
 clf = joblib.load(os.path.join("model", "classifier.pkl"))
 vectorizer = joblib.load(os.path.join("model", "vectorizer.pkl"))
 

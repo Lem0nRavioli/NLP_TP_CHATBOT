@@ -9,18 +9,19 @@ from models import Base, TicketRecord
 
 from sqlalchemy.future import select
 
-# Load model
+# load model & vectorizer
 clf = joblib.load(os.path.join("model", "classifier.pkl"))
 vectorizer = joblib.load(os.path.join("model", "vectorizer.pkl"))
 
 app = FastAPI(title="Ticket Classifier API")
 
-# Create DB tables at startup
+# create DB tables at startup
 @app.on_event("startup")
 async def startup():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
+# define the model for ticket records
 class Ticket(BaseModel):
     id: int
     message: str
@@ -29,6 +30,8 @@ class Ticket(BaseModel):
 
     class Config:
         orm_mode = True
+
+### ROUTING SECTION ###
 
 @app.post("/predict")
 async def predict_ticket(ticket: Ticket, db: AsyncSession = Depends(get_db)):
