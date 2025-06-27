@@ -21,11 +21,11 @@ def get_response(tag):
     return intent_dict.get(tag, intent_dict["fallback"])["response"]
 
 def chat():
-    print("🤖 Hello! How can I help you today?")
+    print("Hello! How can I help you today?")
     while True:
         user_input = input("You: ")
         if user_input.lower() == "exit":
-            print("👋 Bye!")
+            print("Bye!")
             break
 
         if state["mode"] == "create_ticket" and state["awaiting_input"]:
@@ -34,9 +34,9 @@ def chat():
             })
             if response.status_code == 200:
                 data = response.json()
-                print(f"✅ Ticket created with ID {data['id']} — Topic: {data['topic_group']}")
+                print(f"Ticket created with ID {data['id']} — Topic: {data['topic_group']}")
             else:
-                print("❌ Could not create ticket.")
+                print("Could not create ticket.")
             state.update({"mode": None, "awaiting_input": False})
             continue
 
@@ -44,9 +44,9 @@ def chat():
             try:
                 ticket_id = int(re.findall(r"\d+", user_input)[0])
                 response = requests.delete(f"{API_URL}/ticket/{ticket_id}")
-                print("✅ Deleted." if response.status_code == 200 else "❌ Not deleted.")
+                print("Deleted." if response.status_code == 200 else "❌ Not deleted.")
             except:
-                print("❌ Invalid ID.")
+                print("Invalid ID.")
             state.update({"mode": None, "awaiting_input": False})
             continue
 
@@ -58,13 +58,13 @@ def chat():
                     tickets = response.json()
                     match = next((t for t in tickets if t["id"] == ticket_id), None)
                     if match:
-                        print(f"📋 Ticket {ticket_id} — Topic: {match['topic_group']} — Status: {match['status']}")
+                        print(f"Ticket {ticket_id} — Topic: {match['topic_group']} — Status: {match['status']}")
                     else:
-                        print("❌ Ticket not found.")
+                        print("Ticket not found.")
                 else:
-                    print("❌ API failure.")
+                    print("API failure.")
             except:
-                print("❌ Invalid ID.")
+                print("Invalid ID.")
             state.update({"mode": None, "awaiting_input": False})
             continue
         
@@ -81,7 +81,7 @@ def chat():
             intent_tag = encoder.inverse_transform([tag_index])[0]
 
         print(f"[DEBUG] confidence: {max_conf:.2f}, intent: {intent_tag}")
-        print(f"🤖 {get_response(intent_tag)}")
+        print(f"{get_response(intent_tag)}")
 
         if intent_tag in ["create_ticket", "delete_ticket", "get_status"]:
             state.update({"mode": intent_tag, "awaiting_input": True})
