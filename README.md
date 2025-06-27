@@ -2,8 +2,6 @@
 
 A simple chatbot and ticket classification API using FastAPI and Python.
 
----
-
 ## Getting Started
 
 ### 1. Setup
